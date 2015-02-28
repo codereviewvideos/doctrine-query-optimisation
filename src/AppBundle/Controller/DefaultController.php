@@ -8,10 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/app/example", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $topics = $em->getRepository('AppBundle:Topic')->findAll();
+
+        return $this->render('default/index.html.twig', array(
+            'topics' => $topics
+        ));
     }
 }

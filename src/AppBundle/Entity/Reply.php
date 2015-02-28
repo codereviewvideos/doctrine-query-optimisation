@@ -18,7 +18,7 @@ class Reply
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Topic")
+     * @ORM\ManyToOne(targetEntity="Topic", inversedBy="replies")
      */
     private $topic;
 

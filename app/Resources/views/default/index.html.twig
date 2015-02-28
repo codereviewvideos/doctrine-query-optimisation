@@ -1,5 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Homepage.
+
+<div class="container-fluid">
+    <div class="row">
+
+        <ul class="list-group">
+        {% for topic in topics %}
+            <li class="list-group-item">
+                {{ topic.message }}
+                <span class="badge">{{ topic.replies | length }}</span>
+            </li>
+        {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
 {% endblock %}
