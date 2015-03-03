@@ -120,4 +120,27 @@ class DefaultController extends Controller
             'topic' => $topic
         ));
     }
+
+
+    /**
+     * @Route("/property-subsets", name="property_subsets")
+     */
+    public function propertySubsetsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $qb = $em->createQueryBuilder('qb');
+
+        $topics = $qb->select('partial t.{id,author}')
+            ->from('AppBundle:Topic', 't')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        dump($topics);
+
+        return $this->render('default/index.html.twig', array(
+            'topics' => $topics
+        ));
+    }
 }

@@ -6,12 +6,13 @@
     <div class="row">
 
         <ul class="list-group">
-        {#{% for topic in topics %}#}
+        {% for topic in topics %}
             <li class="list-group-item">
-                {{ topic.message }}
-                <span class="badge">{{ topic.replies | length }}</span>
+                {{ topic.author }}
+                {#:: {{ topic.message }}#}
+                {#<span class="badge">{{ topic.replies | length }}</span>#}
             </li>
-        {#{% endfor %}#}
+        {% endfor %}
         </ul>
 
     </div>

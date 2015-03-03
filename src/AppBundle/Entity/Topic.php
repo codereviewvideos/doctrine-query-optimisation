@@ -28,6 +28,11 @@ class Topic
      */
     private $message;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $author;
+
 
     public function __construct()
     {
@@ -88,6 +93,25 @@ class Topic
     public function setMessage($message)
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param mixed $author
+     * @return Topic
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
 
         return $this;
     }
