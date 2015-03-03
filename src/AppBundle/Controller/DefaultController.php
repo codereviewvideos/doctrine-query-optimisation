@@ -72,4 +72,29 @@ class DefaultController extends Controller
             'topic' => $topic
         ));
     }
+
+
+    /**
+     * @Route("/cache-result", name="cache_result")
+     */
+    public function cachingQueryResultAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+//        $topics = $em->getRepository('AppBundle:Topic')->findAll();
+
+        $qb = $em->createQueryBuilder('qb');
+
+        $topics = $qb->select('t', 'r')
+            ->from('AppBundle:Topic', 't')
+            ->join('t.replies', 'r')
+            ->getQuery()
+            ->useResultCache(true, 5, 'my_cache_id')
+            ->getResult()
+        ;
+
+        return $this->render('default/index.html.twig', array(
+            'topics' => $topics
+        ));
+    }
 }
