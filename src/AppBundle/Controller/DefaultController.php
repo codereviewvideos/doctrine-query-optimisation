@@ -97,4 +97,27 @@ class DefaultController extends Controller
             'topics' => $topics
         ));
     }
+
+
+    /**
+     * @Route("/using-references", name="using_references")
+     */
+    public function usingReferencesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+//        $reply = $em->getRepository('AppBundle:Reply')->find(33);
+        $reply = $em->getReference('AppBundle\Entity\Reply', 35);
+
+        $topic = $em->getRepository('AppBundle:Topic')->find(1); /** @var $topic \AppBundle\Entity\Topic */
+
+        $topic->addReply($reply);
+
+        $em->persist($topic);
+        $em->flush();
+
+        return $this->render('default/index.html.twig', array(
+            'topic' => $topic
+        ));
+    }
 }

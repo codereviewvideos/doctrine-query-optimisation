@@ -50,6 +50,18 @@ class Topic
         return $this->replies;
     }
 
+    public function addReply(Reply $reply)
+    {
+        if ( ! $this->replies->contains($reply) ) {
+
+            $reply->setTopic($this);
+
+            $this->replies->add($reply);
+        }
+
+        return $this;
+    }
+
     /**
      * @param mixed $replies
      * @return Reply
