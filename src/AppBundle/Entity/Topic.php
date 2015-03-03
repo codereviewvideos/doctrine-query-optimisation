@@ -19,7 +19,7 @@ class Topic
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reply", mappedBy="topic")
+     * @ORM\OneToMany(targetEntity="Reply", mappedBy="topic", fetch="EXTRA_LAZY")
      */
     private $replies;
 

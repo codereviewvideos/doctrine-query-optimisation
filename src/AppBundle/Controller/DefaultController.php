@@ -57,4 +57,19 @@ class DefaultController extends Controller
             'topics' => $topics
         ));
     }
+
+
+    /**
+     * @Route("/lazy-collections", name="lazy_collections")
+     */
+    public function lazyCollectionsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $topic = $em->getRepository('AppBundle:Topic')->find(1);
+
+        return $this->render('default/index.html.twig', array(
+            'topic' => $topic
+        ));
+    }
 }
