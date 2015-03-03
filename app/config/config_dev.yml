@@ -52,6 +52,6 @@ bazinga_faker:
     orm: doctrine
     entities:
         AppBundle\Entity\Topic:
-            number: 10
+            number: 40
         AppBundle\Entity\Reply:
-            number: 80
+            number: 3000

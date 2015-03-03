@@ -10,11 +10,20 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function findAllVsJoinAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $topics = $em->getRepository('AppBundle:Topic')->findAll();
+//        $topics = $em->getRepository('AppBundle:Topic')->findAll();
+
+        $qb = $em->createQueryBuilder('qb');
+
+        $topics = $qb->select('t', 'r')
+            ->from('AppBundle:Topic', 't')
+            ->join('t.replies', 'r')
+            ->getQuery()
+            ->getResult()
+        ;
 
         return $this->render('default/index.html.twig', array(
             'topics' => $topics
