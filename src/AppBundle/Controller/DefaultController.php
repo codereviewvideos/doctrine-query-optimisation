@@ -168,4 +168,45 @@ class DefaultController extends Controller
             'topics' => $topics
         ));
     }
+
+
+    /**
+     * @Route("/arithmetic-expressions", name="arithmetic_expressions")
+     */
+    public function arithmeticExpressionsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+//        $qb = $em->createQueryBuilder('qb');
+//
+//        $topics = $qb->select('t')
+//            ->addSelect('SIZE(t.replies) + t.rating AS HIDDEN score')
+//            ->from('AppBundle:Topic', 't')
+//            ->orderBy('score', 'ASC')
+//            ->setMaxResults(20)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+
+        $query = $em->createQuery(
+            'SELECT
+                t,
+                SIZE(t.replies) + t.rating AS HIDDEN score
+            FROM
+                AppBundle:Topic t
+            ORDER BY
+                score
+        ');
+
+        $topics = $query
+            ->setMaxResults(20)
+            ->getResult()
+        ;
+
+        dump($topics);
+
+        return $this->render('default/index.html.twig', array(
+            'topics' => $topics
+        ));
+    }
 }

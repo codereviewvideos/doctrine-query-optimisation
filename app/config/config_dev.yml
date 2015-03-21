@@ -52,8 +52,9 @@ bazinga_faker:
     orm: doctrine
     entities:
         AppBundle\Entity\Topic:
-            number: 40
+            number: 80
             custom_formatters:
                 author: { method: firstName }
+                rating: { method: numberBetween, parameters: [1,5] }
         AppBundle\Entity\Reply:
-            number: 3000
+            number: 1000

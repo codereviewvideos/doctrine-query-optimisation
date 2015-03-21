@@ -24,6 +24,11 @@ class Topic
     private $replies;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $rating;
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $message;
@@ -74,6 +79,25 @@ class Topic
     public function setReplies($replies)
     {
         $this->replies = $replies;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param mixed $rating
+     * @return Topic
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
 
         return $this;
     }
