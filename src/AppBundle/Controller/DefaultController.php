@@ -143,4 +143,29 @@ class DefaultController extends Controller
             'topics' => $topics
         ));
     }
+
+
+    /**
+     * @Route("/db-index", name="db_index")
+     */
+    public function dbIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $qb = $em->createQueryBuilder('qb');
+
+        $topics = $qb->select('r')
+            ->from('AppBundle:Reply', 'r')
+            ->where('r.message LIKE :message')
+            ->setParameter('message', '%magnam%')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        dump($topics);
+
+        return $this->render('default/index.html.twig', array(
+            'topics' => $topics
+        ));
+    }
 }

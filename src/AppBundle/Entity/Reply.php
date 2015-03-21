@@ -5,9 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* @ORM\Entity
-* @ORM\Table(name="reply")
-*/
+ * @ORM\Entity
+ * @ORM\Table(name="reply")
+ */
 class Reply
 {
     /**
